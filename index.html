@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedPulse — Internet Speed Test</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="Pictures/speedpulse logo no bg.png">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <div class="brand-icon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+                        <circle cx="14" cy="14" r="13" stroke="#4F9FFF" stroke-width="1.5"/>
+                        <path d="M6 14 L10 9 L14 16 L18 8 L22 14" stroke="#4F9FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                    </svg>
+                </div>
+                <span>SpeedPulse</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
+            <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="apps.html">Apps</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Speed Test -->
+    <main class="hero">
+        <div class="hero-bg">
+            <div class="grid-overlay"></div>
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="tagline">Real-time network diagnostics</div>
+            <h1>How fast is your <span class="gradient-text">internet?</span></h1>
+            <p class="subtitle">Accurate download, upload & ping measurements — no plugins needed.</p>
+
+            <!-- Speedometer -->
+            <div class="speedometer-wrap">
+                <div class="speedometer" id="speedometer">
+                    <svg class="gauge-svg" viewBox="0 0 300 200" id="gaugeSVG">
+                        <!-- Arc track -->
+                        <path d="M 30 170 A 120 120 0 0 1 270 170" fill="none" stroke="#1a2a3a" stroke-width="12" stroke-linecap="round"/>
+                        <!-- Arc fill -->
+                        <path d="M 30 170 A 120 120 0 0 1 270 170" fill="none" stroke="url(#gaugeGrad)" stroke-width="12" stroke-linecap="round"
+                              stroke-dasharray="377" stroke-dashoffset="377" id="gaugeArc"/>
+                        <!-- Tick marks -->
+                        <g id="ticks"></g>
+                        <!-- Needle -->
+                        <line x1="150" y1="170" x2="150" y2="60" stroke="#fff" stroke-width="2.5" stroke-linecap="round" id="needle" style="transform-origin:150px 170px; transform:rotate(-90deg)"/>
+                        <circle cx="150" cy="170" r="8" fill="#4F9FFF"/>
+                        <circle cx="150" cy="170" r="4" fill="#fff"/>
+                        <!-- Speed label -->
+                        <text x="150" y="145" text-anchor="middle" font-size="42" font-weight="700" fill="#fff" id="speedValue" font-family="'Space Grotesk', sans-serif">--</text>
+                        <text x="150" y="162" text-anchor="middle" font-size="13" fill="#7a9bb5" id="speedUnit" font-family="'Space Grotesk', sans-serif">Mbps</text>
+                        <defs>
+                            <linearGradient id="gaugeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                                <stop offset="0%" stop-color="#4F9FFF"/>
+                                <stop offset="50%" stop-color="#00D4AA"/>
+                                <stop offset="100%" stop-color="#00E676"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <div class="phase-label" id="phaseLabel">Ready</div>
+                </div>
+            </div>
+
+            <!-- Start button -->
+            <button class="btn-test" id="testButton" onclick="startTest()">
+                <span class="btn-text">Run Speed Test</span>
+                <span class="btn-icon">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <circle cx="10" cy="10" r="9" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M8 7l5 3-5 3V7z" fill="currentColor"/>
+                    </svg>
+                </span>
+            </button>
+
+            <!-- Results Grid -->
+            <div class="results-grid" id="resultsGrid">
+                <div class="result-card" id="pingCard">
+                    <div class="result-icon">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="3" fill="#4F9FFF"/><circle cx="11" cy="11" r="6.5" stroke="#4F9FFF" stroke-width="1.2" opacity=".5"/><circle cx="11" cy="11" r="10" stroke="#4F9FFF" stroke-width="1" opacity=".25"/></svg>
+                    </div>
+                    <div class="result-info">
+                        <span class="result-label">Ping</span>
+                        <span class="result-value" id="pingVal">--</span>
+                        <span class="result-unit">ms</span>
+                    </div>
+                    <div class="result-bar"><div class="result-bar-fill" id="pingBar"></div></div>
+                </div>
+
+                <div class="result-card" id="downloadCard">
+                    <div class="result-icon">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 4v10M7 10l4 4 4-4" stroke="#00D4AA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16h14" stroke="#00D4AA" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="result-info">
+                        <span class="result-label">Download</span>
+                        <span class="result-value" id="downloadVal">--</span>
+                        <span class="result-unit">Mbps</span>
+                    </div>
+                    <div class="result-bar"><div class="result-bar-fill teal" id="downloadBar"></div></div>
+                </div>
+
+                <div class="result-card" id="uploadCard">
+                    <div class="result-icon">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><path d="M11 18V8M7 12l4-4 4 4" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 6h14" stroke="#A78BFA" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </div>
+                    <div class="result-info">
+                        <span class="result-label">Upload</span>
+                        <span class="result-value" id="uploadVal">--</span>
+                        <span class="result-unit">Mbps</span>
+                    </div>
+                    <div class="result-bar"><div class="result-bar-fill purple" id="uploadBar"></div></div>
+                </div>
+
+                <div class="result-card" id="serverCard">
+                    <div class="result-icon">
+                        <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><rect x="3" y="4" width="16" height="6" rx="2" stroke="#F59E0B" stroke-width="1.5"/><rect x="3" y="12" width="16" height="6" rx="2" stroke="#F59E0B" stroke-width="1.5"/><circle cx="17" cy="7" r="1.5" fill="#F59E0B"/><circle cx="17" cy="15" r="1.5" fill="#F59E0B"/></svg>
+                    </div>
+                    <div class="result-info">
+                        <span class="result-label">Server</span>
+                        <span class="result-value small" id="serverVal">--</span>
+                        <span class="result-unit" id="serverIp"></span>
+                    </div>
+                    <div class="result-bar"><div class="result-bar-fill amber" id="serverBar"></div></div>
+                </div>
+            </div>
+
+            <!-- History Chart -->
+            <div class="history-section" id="historySection" style="display:none">
+                <div class="history-header">
+                    <h3>Speed History</h3>
+                    <button onclick="clearHistory()" class="clear-btn">Clear</button>
+                </div>
+                <div class="history-chart" id="historyChart"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-inner">
+            <div class="section-tag">Why SpeedPulse</div>
+            <h2>Diagnostics that <em>actually tell you something</em></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feat-icon blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h4>Real measurements</h4>
+                    <p>Uses actual HTTP fetch timing against Cloudflare's global network — not simulated values.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feat-icon teal">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.8"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </div>
+                    <h4>Global CDN test</h4>
+                    <p>Tests against Cloudflare's 300+ data centres to find your closest node and true latency.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feat-icon purple">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M9 21V9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                    </div>
+                    <h4>Test history</h4>
+                    <p>Tracks your last 10 results with a visual chart so you can spot drops over time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feat-icon amber">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </div>
+                    <h4>Privacy first</h4>
+                    <p>No account needed. No tracking. Your IP and results never leave your browser.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="brand-icon small">
+                    <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#4F9FFF" stroke-width="1.5"/><path d="M6 14 L10 9 L14 16 L18 8 L22 14" stroke="#4F9FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </div>
+                <span>SpeedPulse</span>
+                <p>Free internet speed diagnostics, no account needed.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <a href="index.html">Speed Test</a>
+                    <a href="apps.html">Mobile Apps</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <a href="about.html">About</a>
+                    <a href="about.html#faq">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 SpeedPulse. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

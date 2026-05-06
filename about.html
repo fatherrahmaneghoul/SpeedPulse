@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpeedPulse — About</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="Pictures/speedpulse logo no bg.png">
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-inner">
+            <a href="index.html" class="brand">
+                <div class="brand-icon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#4F9FFF" stroke-width="1.5"/><path d="M6 14 L10 9 L14 16 L18 8 L22 14" stroke="#4F9FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </div>
+                <span>SpeedPulse</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="apps.html">Apps</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+            </ul>
+            <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="index.html">Home</a>
+            <a href="apps.html">Apps</a>
+            <a href="about.html">About</a>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="page-hero-inner">
+            <div class="section-tag">About SpeedPulse</div>
+            <h1>Built for <span class="gradient-text">real answers</span></h1>
+            <p>We believe everyone deserves to understand their internet connection — not just see random numbers.</p>
+        </div>
+    </section>
+
+    <!-- Mission -->
+    <section class="mission-section">
+        <div class="mission-inner">
+            <div class="mission-text">
+                <h2>Our mission</h2>
+                <p>SpeedPulse was built out of frustration with speed tests that show inflated, unreliable numbers. We use real HTTP fetch timing against Cloudflare's global infrastructure — the same network powering millions of websites — so your results are meaningful, not marketing.</p>
+                <p>Everything runs in your browser. No accounts, no apps, no data collection. Just honest diagnostics.</p>
+            </div>
+            <div class="mission-stats">
+                <div class="stat-card"><span class="stat-num">300+</span><span class="stat-label">Test servers worldwide</span></div>
+                <div class="stat-card"><span class="stat-num">0</span><span class="stat-label">Data stored on our servers</span></div>
+                <div class="stat-card"><span class="stat-num">100%</span><span class="stat-label">Free, always</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq-section">
+        <div class="faq-inner">
+            <div class="section-tag">FAQ</div>
+            <h2>Common questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        <span>How accurate are the speed results?</span>
+                        <svg class="faq-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq-a">
+                        <p>SpeedPulse uses real HTTP downloads and uploads against Cloudflare's CDN to calculate throughput. Results are comparable to industry tools — though your browser security sandbox adds a small overhead. For the most accurate reading, run the test a few times and check the average.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        <span>What devices are supported?</span>
+                        <svg class="faq-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq-a">
+                        <p>SpeedPulse works in any modern browser on any device — desktop, tablet, or phone. Mobile apps for Android and iOS are available on our Apps page.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        <span>Is SpeedPulse free?</span>
+                        <svg class="faq-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq-a">
+                        <p>Yes, completely free. The web version has no paywalls or limits. The mobile apps offer optional premium features like scheduled tests and alerts.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        <span>How can I improve my internet speed?</span>
+                        <svg class="faq-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq-a">
+                        <p>Start by restarting your router. Then try connecting via Ethernet instead of Wi-Fi — this alone can double your speed. Reduce the number of devices on your network during a test. If speeds are consistently below your plan's advertised rate, contact your ISP with your SpeedPulse results as evidence.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        <span>Does SpeedPulse store my data?</span>
+                        <svg class="faq-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq-a">
+                        <p>No. Your IP address and speed results are never sent to our servers. Test history is stored only in your browser's local storage and can be cleared at any time.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" onclick="toggleFaq(this)">
+                        <span>What's the difference between download and upload speed?</span>
+                        <svg class="faq-arrow" width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M5 8l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="faq-a">
+                        <p>Download speed is how fast data comes to your device — this affects streaming, browsing, and downloads. Upload speed is how fast you send data — important for video calls, cloud backups, and sharing files. Most home connections have much faster download than upload.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-inner">
+            <h2>Ready to test your connection?</h2>
+            <p>It takes under 30 seconds. No sign-up required.</p>
+            <a href="index.html" class="btn-cta">Run a speed test →</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="brand-icon small">
+                    <svg width="22" height="22" viewBox="0 0 28 28" fill="none"><circle cx="14" cy="14" r="13" stroke="#4F9FFF" stroke-width="1.5"/><path d="M6 14 L10 9 L14 16 L18 8 L22 14" stroke="#4F9FFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+                </div>
+                <span>SpeedPulse</span>
+                <p>Free internet speed diagnostics, no account needed.</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-col">
+                    <h5>Product</h5>
+                    <a href="index.html">Speed Test</a>
+                    <a href="apps.html">Mobile Apps</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Company</h5>
+                    <a href="about.html">About</a>
+                    <a href="about.html#faq">FAQ</a>
+                </div>
+                <div class="footer-col">
+                    <h5>Legal</h5>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 SpeedPulse. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
